@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg8ifvoci3ibf"]
+
+[ext_resource type="Texture2D" uid="uid://cpinjlbt24t7q" path="res://textures/entity/lightning_mage/Idle.png" id="1_vkjsm"]
+
+[sub_resource type="Animation" id="Animation_rfdep"]
+resource_name = "idle"
+length = 1.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vftay"]
+_data = {
+"idle": SubResource("Animation_rfdep")
+}
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vv1bf"]
+
+[node name="Grunt" type="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.970047, 0)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("1_vkjsm")
+hframes = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vftay")
+}
+autoplay = "idle"
+
+[node name="hurtbox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hurtbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.997245, -2.38419e-07)
+shape = SubResource("CapsuleShape3D_vv1bf")

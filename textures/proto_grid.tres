@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://catbun5aidvoi"]
+
+[ext_resource type="Shader" path="res://shaders/proto_grid.gdshader" id="1_o12xb"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_o12xb")
+shader_parameter/lightColor = Color(0.32549, 0.32549, 0.32549, 1)
+shader_parameter/darkColor = null
+shader_parameter/borderColor = Color(1, 1, 1, 1)

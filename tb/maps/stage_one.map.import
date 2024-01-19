@@ -1,0 +1,14 @@
+[remap]
+
+importer="qodot.map"
+type="Resource"
+uid="uid://cqufbq2kdiw5y"
+path="res://.godot/imported/stage_one.map-51374bd2eec3071a279ab6e5b50b3a2f.tres"
+
+[deps]
+
+source_file="res://tb/maps/stage_one.map"
+dest_files=["res://.godot/imported/stage_one.map-51374bd2eec3071a279ab6e5b50b3a2f.tres"]
+
+[params]
+

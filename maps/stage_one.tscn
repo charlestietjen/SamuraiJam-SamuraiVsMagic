@@ -1,0 +1,162 @@
+[gd_scene load_steps=22 format=3 uid="uid://djkro8ul7b00f"]
+
+[ext_resource type="Script" path="res://addons/qodot/src/nodes/qodot_map.gd" id="1_2e55t"]
+[ext_resource type="Resource" uid="uid://c36hv0o6g0udo" path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" id="2_2bsw7"]
+[ext_resource type="Material" uid="uid://catbun5aidvoi" path="res://textures/proto_grid.tres" id="3_bdbln"]
+[ext_resource type="PackedScene" uid="uid://co5owac6wyksp" path="res://entities/player/player.tscn" id="4_0t378"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="5_d8gar"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_sy8uk"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/camera_3D_resource.gd" id="7_wu0m1"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="8_l6rdf"]
+[ext_resource type="Environment" uid="uid://b2u36irql2cy" path="res://environment/defaultEnv.tres" id="9_raqha"]
+[ext_resource type="PackedScene" uid="uid://bg8ifvoci3ibf" path="res://entities/grunt/grunt.tscn" id="10_sxxq0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_56ej3"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_sn43c"]
+_surfaces = [{
+"aabb": AABB(-22, -1, -28, 151, 2.00001, 85),
+"attribute_data": PackedByteArray(0, 0, 92, 69, 0, 0, 32, 195, 0, 0, 92, 69, 0, 0, 32, 67, 0, 64, 161, 198, 0, 0, 32, 67, 0, 64, 161, 198, 0, 0, 32, 195, 0, 0, 140, 197, 0, 0, 32, 195, 0, 128, 14, 70, 0, 0, 32, 195, 0, 128, 14, 70, 0, 0, 32, 67, 0, 0, 140, 197, 0, 0, 32, 67, 0, 0, 140, 69, 0, 64, 161, 198, 0, 0, 140, 69, 0, 0, 92, 69, 0, 128, 14, 198, 0, 0, 92, 69, 0, 128, 14, 198, 0, 64, 161, 198, 0, 0, 140, 197, 0, 64, 161, 198, 0, 128, 14, 70, 0, 64, 161, 198, 0, 128, 14, 70, 0, 0, 92, 69, 0, 0, 140, 197, 0, 0, 92, 69, 0, 0, 140, 69, 0, 0, 32, 195, 0, 0, 140, 69, 0, 0, 32, 67, 0, 128, 14, 198, 0, 0, 32, 67, 0, 128, 14, 198, 0, 0, 32, 195, 0, 0, 92, 197, 0, 0, 32, 195, 0, 64, 161, 70, 0, 0, 32, 195, 0, 64, 161, 70, 0, 0, 32, 67, 0, 0, 92, 197, 0, 0, 32, 67),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 4, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 8, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 12, 0, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 16, 0, 18, 0, 19, 0, 20, 0, 21, 0, 22, 0, 20, 0, 22, 0, 23, 0),
+"material": ExtResource("3_bdbln"),
+"name": "proto_grid",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray(0, 0, 176, 193, 0, 0, 128, 63, 0, 0, 224, 193, 0, 0, 176, 193, 0, 0, 128, 191, 0, 0, 224, 193, 0, 0, 1, 67, 0, 0, 128, 191, 0, 0, 224, 193, 0, 0, 1, 67, 0, 0, 128, 63, 0, 0, 224, 193, 0, 0, 176, 193, 0, 0, 128, 63, 0, 0, 224, 193, 0, 0, 176, 193, 0, 0, 128, 63, 0, 0, 100, 66, 0, 0, 176, 193, 0, 0, 128, 191, 0, 0, 100, 66, 0, 0, 176, 193, 0, 0, 128, 191, 0, 0, 224, 193, 0, 0, 1, 67, 0, 0, 128, 191, 0, 0, 224, 193, 0, 0, 176, 193, 0, 0, 128, 191, 0, 0, 224, 193, 0, 0, 176, 193, 0, 0, 128, 191, 0, 0, 100, 66, 0, 0, 1, 67, 0, 0, 128, 191, 0, 0, 100, 66, 0, 0, 1, 67, 0, 0, 128, 63, 0, 0, 224, 193, 0, 0, 1, 67, 0, 0, 128, 63, 0, 0, 100, 66, 0, 0, 176, 193, 0, 0, 128, 63, 0, 0, 100, 66, 0, 0, 176, 193, 0, 0, 128, 63, 0, 0, 224, 193, 0, 0, 1, 67, 0, 0, 128, 63, 0, 0, 224, 193, 0, 0, 1, 67, 0, 0, 128, 191, 0, 0, 224, 193, 0, 0, 1, 67, 0, 0, 128, 191, 0, 0, 100, 66, 0, 0, 1, 67, 0, 0, 128, 63, 0, 0, 100, 66, 0, 0, 176, 193, 0, 0, 128, 63, 0, 0, 100, 66, 0, 0, 1, 67, 0, 0, 128, 63, 0, 0, 100, 66, 0, 0, 1, 67, 0, 0, 128, 191, 0, 0, 100, 66, 0, 0, 176, 193, 0, 0, 128, 191, 0, 0, 100, 66, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191)
+}]
+
+[sub_resource type="ArrayOccluder3D" id="ArrayOccluder3D_n7k5g"]
+vertices = PackedVector3Array(-22, 1, -28, -22, -1, -28, 129, -1, -28, 129, 1, -28, -22, 1, -28, -22, 1, 57, -22, -1, 57, -22, -1, -28, 129, -1, -28, -22, -1, -28, -22, -1, 57, 129, -1, 57, 129, 1, -28, 129, 1, 57, -22, 1, 57, -22, 1, -28, 129, 1, -28, 129, -1, -28, 129, -1, 57, 129, 1, 57, -22, 1, 57, 129, 1, 57, 129, -1, 57, -22, -1, 57)
+indices = PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 2, 3, 4, 5, 6, 4, 6, 7, 8, 9, 10, 8, 10, 11, 12, 13, 14, 12, 14, 15, 16, 17, 18, 16, 18, 19, 20, 21, 22, 20, 22, 23)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_h8cdf"]
+points = PackedVector3Array(-22, 1, -28, -22, -1, -28, 129, -1, -28, 129, 1, -28, -22, 1, 57, -22, -1, 57, 129, -1, 57, 129, 1, 57)
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_qclgm"]
+
+[sub_resource type="Resource" id="Resource_qnpem"]
+script = ExtResource("6_sy8uk")
+duration = 0.5
+transition = 0
+ease = 2
+
+[sub_resource type="Resource" id="Resource_43b3q"]
+script = ExtResource("7_wu0m1")
+cull_mask = 1048575
+h_offset = 0.0
+v_offset = 0.0
+fov = 75.0
+
+[sub_resource type="Resource" id="Resource_h32y1"]
+script = ExtResource("6_sy8uk")
+duration = 0.5
+transition = 0
+ease = 2
+
+[sub_resource type="Resource" id="Resource_ljm4v"]
+script = ExtResource("7_wu0m1")
+cull_mask = 1048575
+h_offset = 0.0
+v_offset = 0.0
+fov = 75.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6c5mr"]
+size = Vector2(400, 400)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_uf6xt"]
+data = PackedVector3Array(200, 0, 200, -200, 0, 200, 200, 0, -200, -200, 0, 200, -200, 0, -200, 200, 0, -200)
+
+[node name="StageOne" type="Node3D"]
+
+[node name="QodotMap" type="Node3D" parent="."]
+script = ExtResource("1_2e55t")
+map_file = "D:/dev/GodotProjects/jams/SamuraiJam-SamuraiVsMagic/tb/maps/stage_one.map"
+entity_fgd = ExtResource("2_2bsw7")
+texture_file_extensions = PackedStringArray("png", "jpg", "jpeg", "bmp")
+default_material = SubResource("StandardMaterial3D_56ej3")
+
+[node name="entity_0_worldspawn" type="StaticBody3D" parent="QodotMap"]
+
+[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="QodotMap/entity_0_worldspawn"]
+mesh = SubResource("ArrayMesh_sn43c")
+
+[node name="entity_0_occluder_instance" type="OccluderInstance3D" parent="QodotMap/entity_0_worldspawn"]
+occluder = SubResource("ArrayOccluder3D_n7k5g")
+
+[node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="QodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_h8cdf")
+
+[node name="Player" parent="." node_paths=PackedStringArray("_third_person_pcam", "_top_down_pcam") instance=ExtResource("4_0t378")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.82455, 0)
+_third_person_pcam = NodePath("../FollowPhantomCamera")
+_top_down_pcam = NodePath("../TopDownPhantomCamera")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.22455, 8)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+script = ExtResource("8_l6rdf")
+
+[node name="FollowPhantomCamera" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.22455, 8)
+script = ExtResource("5_d8gar")
+priority_override = false
+priority = 2
+follow_mode = 6
+follow_target = NodePath("../Player")
+follow_parameters/spring_arm/spring_length = 8.0
+follow_parameters/spring_arm/collision_mask = 1
+follow_parameters/spring_arm/shape = SubResource("SeparationRayShape3D_qclgm")
+follow_parameters/spring_arm/margin = 0.01
+follow_parameters/target_offset = Vector3(0, 1.4, 0)
+follow_parameters/damping = true
+follow_parameters/damping_value = 10.0
+look_at_mode = 0
+tween_parameters = SubResource("Resource_qnpem")
+tween_on_load = true
+inactive_update_mode = 0
+camera_3D_resource = SubResource("Resource_43b3q")
+
+[node name="TopDownPhantomCamera" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 9.75275, 4)
+script = ExtResource("5_d8gar")
+priority_override = false
+priority = 0
+follow_mode = 5
+follow_target = NodePath("../Player")
+follow_parameters/distance = 8.0
+follow_parameters/target_offset = Vector3(0, 0, 0)
+follow_parameters/damping = true
+follow_parameters/damping_value = 10.0
+follow_parameters/dead_zone_horizontal = 0.1
+follow_parameters/dead_zone_vertical = 0.1
+follow_parameters/viewfinder_in_play = false
+look_at_mode = 0
+tween_parameters = SubResource("Resource_h32y1")
+tween_on_load = true
+inactive_update_mode = 0
+camera_3D_resource = SubResource("Resource_ljm4v")
+
+[node name="debug_world_collider" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.985132, 0)
+visible = false
+mesh = SubResource("PlaneMesh_6c5mr")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="debug_world_collider"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="debug_world_collider/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_uf6xt")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("9_raqha")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99469, -0.102914, 0, 0.102914, 0.99469, 0, 5.00636, 0)
+
+[node name="Grunt" parent="." instance=ExtResource("10_sxxq0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.67281, 1, 0.789139)
