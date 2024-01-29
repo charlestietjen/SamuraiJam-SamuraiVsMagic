@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://co5owac6wyksp"]
+[gd_scene load_steps=42 format=3 uid="uid://co5owac6wyksp"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_mu5ft"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_avxra"]
@@ -6,15 +6,29 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="4_gnj8o"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="5_gsjlk"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="6_0e3os"]
+[ext_resource type="Animation" uid="uid://dvmebaxdrsj3y" path="res://mesh/player/anim/block_recoil.res" id="7_6elda"]
 [ext_resource type="Animation" uid="uid://c0cxmcwl4xdrr" path="res://mesh/player/anim/attack.res" id="7_54mhj"]
+[ext_resource type="Animation" uid="uid://bm2fu7k6sqnqe" path="res://mesh/player/anim/attack_high.res" id="7_ahqth"]
 [ext_resource type="Animation" uid="uid://u3clc6jtjci6" path="res://mesh/player/anim/reset.res" id="7_i8q6t"]
 [ext_resource type="Animation" uid="uid://kjvtmjqusa7h" path="res://mesh/player/anim/run_backwards .res" id="7_mc84v"]
 [ext_resource type="PackedScene" uid="uid://b3k7rdj7hreco" path="res://mesh/player/protag.glb" id="7_ymjqf"]
 [ext_resource type="Animation" uid="uid://cisa4nxfd8f07" path="res://mesh/player/anim/idle .res" id="8_87b4f"]
 [ext_resource type="Animation" uid="uid://bh8ld1ofvh7pn" path="res://mesh/player/anim/run_left .res" id="8_jo662"]
+[ext_resource type="Animation" uid="uid://cx1g5mu4fq0g8" path="res://mesh/player/anim/attack_low.res" id="8_pm46t"]
+[ext_resource type="Animation" uid="uid://cu41uoruy0eff" path="res://mesh/player/anim/parried.res" id="8_wi8rb"]
 [ext_resource type="Animation" uid="uid://ij5obftei1ml" path="res://mesh/player/anim/run_right .res" id="9_7uqty"]
+[ext_resource type="Animation" uid="uid://b4jnpgdftqykl" path="res://mesh/player/anim/walk_forward_low - loop.res" id="9_gv7sl"]
 [ext_resource type="Animation" uid="uid://6qagihy6myy5" path="res://mesh/player/anim/run .res" id="9_w18cw"]
+[ext_resource type="Animation" uid="uid://fu2l6eonnwkq" path="res://mesh/player/anim/attack_mid.res" id="9_y0cw2"]
+[ext_resource type="Animation" uid="uid://dyb2wbohcdue0" path="res://mesh/player/anim/idle_mid - loop.res" id="10_58pcf"]
+[ext_resource type="Animation" uid="uid://dtm31g8hri8uf" path="res://mesh/player/anim/walk_forward_high .res" id="10_c8som"]
+[ext_resource type="Animation" uid="uid://c083kdx8ht3ay" path="res://mesh/player/anim/idle_high .res" id="11_8ptb3"]
 [ext_resource type="PackedScene" uid="uid://ut7yxyfx0kwy" path="res://mesh/player/katana.glb" id="11_7758p"]
+[ext_resource type="Animation" uid="uid://cmvqnfglnb5v3" path="res://mesh/player/anim/walk_forward_mid .res" id="11_jldw4"]
+[ext_resource type="Animation" uid="uid://bmn3817qgiy44" path="res://mesh/player/anim/idle_low .res" id="12_1ljuk"]
+[ext_resource type="Animation" uid="uid://d15mt0j383kbj" path="res://mesh/player/anim/walk_left_high .res" id="12_7ganh"]
+[ext_resource type="Animation" uid="uid://dhgomjf28p8fq" path="res://mesh/player/anim/walk_left_low .res" id="13_e53ab"]
+[ext_resource type="Animation" uid="uid://da4dr6w4gss6s" path="res://mesh/player/anim/walk_left_mid .res" id="14_j4i4p"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v07fb"]
 radius = 0.286748
@@ -24,27 +38,33 @@ height = 1.688
 radius = 0.235373
 height = 1.65864
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7cidf"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bb02a"]
 _data = {
 "attack": ExtResource("7_54mhj"),
+"attack_high": ExtResource("7_ahqth"),
+"attack_low": ExtResource("8_pm46t"),
+"attack_mid": ExtResource("9_y0cw2"),
+"block_recoil": ExtResource("7_6elda"),
 "idle ": ExtResource("8_87b4f"),
+"idle_high ": ExtResource("11_8ptb3"),
+"idle_low ": ExtResource("12_1ljuk"),
+"idle_mid - loop": ExtResource("10_58pcf"),
+"parried": ExtResource("8_wi8rb"),
 "reset": ExtResource("7_i8q6t"),
 "run ": ExtResource("9_w18cw"),
 "run_backwards ": ExtResource("7_mc84v"),
 "run_left ": ExtResource("8_jo662"),
-"run_right ": ExtResource("9_7uqty")
+"run_right ": ExtResource("9_7uqty"),
+"walk_forward_high ": ExtResource("10_c8som"),
+"walk_forward_low - loop": ExtResource("9_gv7sl"),
+"walk_forward_mid ": ExtResource("11_jldw4"),
+"walk_left_high ": ExtResource("12_7ganh"),
+"walk_left_low ": ExtResource("13_e53ab"),
+"walk_left_mid ": ExtResource("14_j4i4p")
 }
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_fon1n"]
-
-[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_4ifhx"]
-xfade_time = 0.1
-input_0/name = "state_0"
-input_0/auto_advance = false
-input_0/reset = true
-input_1/name = "state_1"
-input_1/auto_advance = false
-input_1/reset = true
+filters = ["root/Skeleton3D/BoneAttachment3D/katana/SM_Wep_Odachi_01:visible", "root/Skeleton3D/BoneAttachment3D2/katana:visible", "root/Skeleton3D:arm_stretch.l", "root/Skeleton3D:arm_stretch.r", "root/Skeleton3D:arm_twist.l", "root/Skeleton3D:arm_twist.r", "root/Skeleton3D:forearm_stretch.l", "root/Skeleton3D:forearm_stretch.r", "root/Skeleton3D:forearm_twist.l", "root/Skeleton3D:forearm_twist.r", "root/Skeleton3D:hand.l", "root/Skeleton3D:hand.r", "root/Skeleton3D:head.x", "root/Skeleton3D:index2.l", "root/Skeleton3D:index2.r", "root/Skeleton3D:index3.l", "root/Skeleton3D:index3.r", "root/Skeleton3D:middle2.l", "root/Skeleton3D:middle2.r", "root/Skeleton3D:middle3.l", "root/Skeleton3D:middle3.r", "root/Skeleton3D:root.x", "root/Skeleton3D:spine_01.x", "root/Skeleton3D:spine_02.x", "root/Skeleton3D:spine_03.x", "root/Skeleton3D:thumb2.l", "root/Skeleton3D:thumb2.r", "root/Skeleton3D:thumb3.l", "root/Skeleton3D:thumb3.r"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uw2j8"]
 animation = &"attack"
@@ -77,16 +97,14 @@ blend_point_4/node = SubResource("AnimationNodeAnimation_pb8bw")
 blend_point_4/pos = Vector2(-1, 0)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_813oe"]
-graph_offset = Vector2(-455.091, 127)
+graph_offset = Vector2(-538, 72)
 nodes/attack_shot/node = SubResource("AnimationNodeOneShot_fon1n")
 nodes/attack_shot/position = Vector2(100, 160)
-nodes/attack_type/node = SubResource("AnimationNodeTransition_4ifhx")
-nodes/attack_type/position = Vector2(-80, 300)
 nodes/basic_attack/node = SubResource("AnimationNodeAnimation_uw2j8")
-nodes/basic_attack/position = Vector2(-320, 300)
+nodes/basic_attack/position = Vector2(-140, 300)
 nodes/locomotion_blend/node = SubResource("AnimationNodeBlendSpace2D_sxt6d")
 nodes/locomotion_blend/position = Vector2(-200, 120)
-node_connections = [&"attack_shot", 0, &"locomotion_blend", &"attack_shot", 1, &"attack_type", &"attack_type", 0, &"basic_attack", &"output", 0, &"attack_shot"]
+node_connections = [&"attack_shot", 0, &"locomotion_blend", &"attack_shot", 1, &"basic_attack", &"output", 0, &"attack_shot"]
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_state_chart", "_hurtbox", "_animation_tree")]
 collision_layer = 0
@@ -116,37 +134,51 @@ script = ExtResource("3_t4de5")
 
 [node name="Movement" type="Node" parent="StateChart/ParallelState"]
 script = ExtResource("4_gnj8o")
-initial_state = NodePath("FollowCamMovement")
-
-[node name="FollowCamMovement" type="Node" parent="StateChart/ParallelState/Movement"]
-script = ExtResource("5_gsjlk")
-
-[node name="OnChangePerspective" type="Node" parent="StateChart/ParallelState/Movement/FollowCamMovement"]
-script = ExtResource("6_0e3os")
-to = NodePath("../../TopDownCamMovement")
-event = &"change_perspective"
+initial_state = NodePath("FollowCam")
 
 [node name="TopDownCamMovement" type="Node" parent="StateChart/ParallelState/Movement"]
 script = ExtResource("5_gsjlk")
 
 [node name="OnChangePerspective" type="Node" parent="StateChart/ParallelState/Movement/TopDownCamMovement"]
 script = ExtResource("6_0e3os")
-to = NodePath("../../FollowCamMovement")
+to = NodePath("../../FollowCam")
 event = &"change_perspective"
+
+[node name="FollowCam" type="Node" parent="StateChart/ParallelState/Movement"]
+script = ExtResource("4_gnj8o")
+initial_state = NodePath("FollowCamMovement")
+
+[node name="FollowCamMovement" type="Node" parent="StateChart/ParallelState/Movement/FollowCam"]
+script = ExtResource("5_gsjlk")
+
+[node name="OnChangePerspective" type="Node" parent="StateChart/ParallelState/Movement/FollowCam/FollowCamMovement"]
+script = ExtResource("6_0e3os")
+to = NodePath("../../../TopDownCamMovement")
+event = &"change_perspective"
+
+[node name="OnLockTarget" type="Node" parent="StateChart/ParallelState/Movement/FollowCam/FollowCamMovement"]
+script = ExtResource("6_0e3os")
+to = NodePath("../../LockOnFollowCam")
+event = &"toggle_lockon"
+
+[node name="LockOnFollowCam" type="Node" parent="StateChart/ParallelState/Movement/FollowCam"]
+script = ExtResource("5_gsjlk")
+
+[node name="OnUnlockTarget" type="Node" parent="StateChart/ParallelState/Movement/FollowCam/LockOnFollowCam"]
+script = ExtResource("6_0e3os")
+to = NodePath("../../FollowCamMovement")
+event = &"toggle_lockon"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../protag")
 libraries = {
-"": SubResource("AnimationLibrary_7cidf")
+"": SubResource("AnimationLibrary_bb02a")
 }
 tree_root = SubResource("AnimationNodeBlendTree_813oe")
 anim_player = NodePath("../protag/AnimationPlayer")
 parameters/attack_shot/active = false
 parameters/attack_shot/internal_active = false
 parameters/attack_shot/request = 0
-parameters/attack_type/current_state = "state_0"
-parameters/attack_type/transition_request = ""
-parameters/attack_type/current_index = 0
 parameters/locomotion_blend/blend_position = Vector2(0, 0)
 
 [node name="protag" parent="." instance=ExtResource("7_ymjqf")]
@@ -155,13 +187,13 @@ parameters/locomotion_blend/blend_position = Vector2(0, 0)
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="protag/root" index="0"]
-bones/0/position = Vector3(-4.13613e-16, 0.881258, -0.00196802)
+bones/0/position = Vector3(-4.13613e-16, 0.884115, -0.00196802)
 bones/1/rotation = Quaternion(0.0201894, -0.00329916, -6.66812e-05, 0.999791)
-bones/2/rotation = Quaternion(0.000933908, 0.00330141, -3.08645e-06, 0.999994)
+bones/2/rotation = Quaternion(-0.0105213, 0.00330123, 3.47323e-05, 0.999939)
 bones/2/scale = Vector3(1, 1, 1)
-bones/3/rotation = Quaternion(-0.0100659, -1.18967e-07, -1.19406e-09, 0.999949)
+bones/3/rotation = Quaternion(-0.0180214, -1.18954e-07, -2.14055e-09, 0.999838)
 bones/4/rotation = Quaternion(-0.387679, 0.00620007, -0.00260763, 0.92177)
-bones/5/rotation = Quaternion(0.374358, -0.00626845, 0.00250533, 0.92726)
+bones/5/rotation = Quaternion(0.388343, -0.00622952, 0.0025989, 0.92149)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/rotation = Quaternion(-0.580132, 0.429596, 0.411516, 0.556371)
 bones/6/scale = Vector3(1, 1, 1)
@@ -179,7 +211,6 @@ bones/14/scale = Vector3(1, 1, 1)
 bones/15/rotation = Quaternion(0.0839125, -0.00711082, 0.0305364, 0.99598)
 bones/16/rotation = Quaternion(0.0373715, 0.567944, -0.155846, 0.807314)
 bones/17/rotation = Quaternion(-0.158289, -0.518632, -0.158897, 0.825056)
-bones/17/scale = Vector3(1, 1, 1)
 bones/18/rotation = Quaternion(-0.219472, -0.0359502, 0.0111537, 0.974892)
 bones/19/rotation = Quaternion(0.0867348, -0.0291434, -0.377692, 0.921399)
 bones/19/scale = Vector3(1, 1, 1)
@@ -189,12 +220,12 @@ bones/21/rotation = Quaternion(-0.197781, 0.0684407, 0.0104515, 0.977798)
 bones/22/rotation = Quaternion(-0.285474, -0.0370734, 0.0247503, 0.957349)
 bones/23/rotation = Quaternion(-0.580132, -0.429596, -0.411516, 0.556371)
 bones/23/scale = Vector3(1, 1, 1)
-bones/24/rotation = Quaternion(-0.396104, 0.467763, -0.134199, 0.778647)
+bones/24/rotation = Quaternion(-0.390351, 0.479698, -0.12434, 0.775922)
 bones/24/scale = Vector3(1, 1, 1)
-bones/25/rotation = Quaternion(1.25272e-08, -0.417732, 2.9618e-08, 0.90857)
-bones/26/rotation = Quaternion(3.5293e-08, 8.68423e-08, -0.724788, 0.688972)
-bones/27/rotation = Quaternion(-8.41869e-09, -0.0830655, -3.13887e-08, 0.996544)
-bones/28/rotation = Quaternion(0.022952, -0.0791591, -0.0473096, 0.995474)
+bones/25/rotation = Quaternion(-2.0079e-09, -0.42621, 5.2888e-09, 0.904625)
+bones/26/rotation = Quaternion(-3.79546e-08, 2.15351e-08, -0.733216, 0.679996)
+bones/27/rotation = Quaternion(4.32753e-08, -0.0877763, -4.0986e-08, 0.99614)
+bones/28/rotation = Quaternion(0.0206243, -0.084153, -0.0355546, 0.995605)
 bones/29/rotation = Quaternion(0.0567503, 0.400288, -0.368763, 0.836997)
 bones/30/rotation = Quaternion(-0.474813, 0.300795, 0.178827, 0.807525)
 bones/30/scale = Vector3(1, 1, 1)
@@ -203,32 +234,32 @@ bones/31/scale = Vector3(1, 1, 1)
 bones/32/rotation = Quaternion(0.0839126, 0.00711082, -0.0305364, 0.99598)
 bones/33/rotation = Quaternion(0.0373715, -0.567944, 0.155846, 0.807314)
 bones/34/rotation = Quaternion(-0.263909, 0.493657, 0.224788, 0.797575)
-bones/35/rotation = Quaternion(-0.344, 0.0370928, -0.00639917, 0.938215)
+bones/35/rotation = Quaternion(-0.344, 0.0370928, -0.00639921, 0.938215)
 bones/36/rotation = Quaternion(0.0867348, 0.0291434, 0.377692, 0.921399)
 bones/37/rotation = Quaternion(-0.110638, -0.00194487, -0.0811112, 0.990543)
 bones/37/scale = Vector3(1, 1, 1)
 bones/38/rotation = Quaternion(-0.322868, -0.0665083, -0.0192356, 0.943908)
-bones/39/rotation = Quaternion(-0.407171, 0.0399691, -0.0197354, 0.912264)
-bones/40/rotation = Quaternion(0.702436, 0.1828, 0.681643, 0.0923642)
+bones/39/rotation = Quaternion(-0.407171, 0.039969, -0.0197355, 0.912264)
+bones/40/rotation = Quaternion(0.703485, 0.178202, 0.682319, 0.0882797)
 bones/40/scale = Vector3(1, 0.999999, 1)
-bones/41/rotation = Quaternion(-1.83139e-08, 0.0230207, 4.12932e-08, 0.999735)
-bones/42/rotation = Quaternion(-6.32286e-08, -2.77935e-08, 0.328209, 0.944605)
-bones/43/rotation = Quaternion(0.343292, 0.592661, -0.434596, 0.584833)
+bones/41/rotation = Quaternion(-2.0019e-08, 0.0231601, 5.43504e-08, 0.999732)
+bones/42/rotation = Quaternion(-6.61989e-08, -1.11843e-08, 0.316308, 0.948657)
+bones/43/rotation = Quaternion(0.339994, 0.594617, -0.430939, 0.587475)
 bones/43/scale = Vector3(1, 1, 1)
 bones/44/rotation = Quaternion(-2.46466e-07, 0.982272, 0.187462, -3.52404e-06)
-bones/45/rotation = Quaternion(9.8687e-08, 0.0456043, 1.26228e-07, 0.99896)
-bones/46/rotation = Quaternion(-0.724505, 0.0750686, 0.684932, 0.0180571)
+bones/45/rotation = Quaternion(1.22147e-07, 0.0454162, 1.53267e-07, 0.998968)
+bones/46/rotation = Quaternion(-0.724861, 0.0698103, 0.684977, 0.0225775)
 bones/46/scale = Vector3(0.999999, 1, 1)
 bones/47/rotation = Quaternion(-6.95777e-07, -0.0335506, -3.33014e-07, 0.999437)
-bones/48/rotation = Quaternion(-1.73586e-07, 2.8962e-08, -0.272639, 0.962117)
+bones/48/rotation = Quaternion(-4.00024e-07, -3.18466e-08, -0.258191, 0.966094)
 bones/48/scale = Vector3(1, 1, 1)
-bones/49/rotation = Quaternion(0.395319, -0.55807, 0.493183, 0.537635)
+bones/49/rotation = Quaternion(0.39122, -0.561035, 0.488709, 0.541618)
 bones/50/rotation = Quaternion(9.71486e-08, 0.982272, 0.187463, 3.46881e-06)
 bones/50/scale = Vector3(1, 1, 1)
-bones/51/rotation = Quaternion(-7.20661e-09, -0.053459, -4.41112e-08, 0.99857)
+bones/51/rotation = Quaternion(3.96544e-09, -0.0530838, -4.96e-08, 0.99859)
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="protag/root/Skeleton3D" index="0"]
-transform = Transform3D(-0.391734, -0.438544, 0.80884, 0.861966, -0.482394, 0.155915, 0.321804, 0.758271, 0.566981, 0.277245, 0.995238, 0.0279127)
+transform = Transform3D(-0.391733, -0.438546, 0.80884, 0.861967, -0.482394, 0.155914, 0.321804, 0.75827, 0.566982, 0.277244, 1.00104, 0.0279154)
 bone_name = "hand.l"
 bone_idx = 28
 
@@ -236,7 +267,7 @@ bone_idx = 28
 transform = Transform3D(-9.65074, 41.8416, 61.491, 7.93896, -61.0725, 42.8031, 73.9515, 12.0167, 3.42953, 0.228504, 0.314751, -0.0280105)
 
 [node name="BoneAttachment3D2" type="BoneAttachment3D" parent="protag/root/Skeleton3D" index="2"]
-transform = Transform3D(-0.330952, -0.130772, -0.934542, -0.725309, -0.598278, 0.340574, -0.603653, 0.790545, 0.103151, -0.38895, 0.897236, 0.00752792)
+transform = Transform3D(-0.330951, -0.130772, -0.934543, -0.748192, -0.567143, 0.34432, -0.575047, 0.813171, 0.0898543, -0.38895, 0.900183, 0.0206506)
 bone_name = "hand.r"
 bone_idx = 11
 
@@ -247,16 +278,21 @@ visible = false
 [node name="SM_Wep_Odachi_Covered_01" parent="protag/root/Skeleton3D/BoneAttachment3D2/katana" index="1"]
 visible = false
 
-[connection signal="state_entered" from="StateChart/ParallelState/Movement/FollowCamMovement" to="." method="_on_enter_follow_movement"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/Movement/FollowCamMovement" to="." method="_universal_physics"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/Movement/FollowCamMovement" to="." method="_follow_cam_processing"]
-[connection signal="state_physics_processing" from="StateChart/ParallelState/Movement/FollowCamMovement" to="." method="_follow_movement_physics"]
-[connection signal="state_processing" from="StateChart/ParallelState/Movement/FollowCamMovement" to="." method="_perspective_change_process"]
-[connection signal="state_unhandled_input" from="StateChart/ParallelState/Movement/FollowCamMovement" to="." method="_follow_cam_unhandled_input"]
 [connection signal="state_entered" from="StateChart/ParallelState/Movement/TopDownCamMovement" to="." method="_on_enter_topdown_movement"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/Movement/TopDownCamMovement" to="." method="_topdown_movement_physics"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/Movement/TopDownCamMovement" to="." method="_universal_physics"]
 [connection signal="state_processing" from="StateChart/ParallelState/Movement/TopDownCamMovement" to="." method="_perspective_change_process"]
+[connection signal="state_entered" from="StateChart/ParallelState/Movement/FollowCam/FollowCamMovement" to="." method="_on_enter_follow_movement"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/Movement/FollowCam/FollowCamMovement" to="." method="_follow_movement_physics"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/Movement/FollowCam/FollowCamMovement" to="." method="_follow_cam_processing"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/Movement/FollowCam/FollowCamMovement" to="." method="_universal_physics"]
+[connection signal="state_processing" from="StateChart/ParallelState/Movement/FollowCam/FollowCamMovement" to="." method="_process_lockon_toggle"]
+[connection signal="state_unhandled_input" from="StateChart/ParallelState/Movement/FollowCam/FollowCamMovement" to="." method="_follow_cam_unhandled_input"]
+[connection signal="state_entered" from="StateChart/ParallelState/Movement/FollowCam/LockOnFollowCam" to="." method="_on_enter_lockon_movement"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/Movement/FollowCam/LockOnFollowCam" to="." method="_follow_movement_physics"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/Movement/FollowCam/LockOnFollowCam" to="." method="_follow_cam_processing"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/Movement/FollowCam/LockOnFollowCam" to="." method="_universal_physics"]
+[connection signal="state_processing" from="StateChart/ParallelState/Movement/FollowCam/LockOnFollowCam" to="." method="_process_lockon_toggle"]
 
 [editable path="protag"]
 [editable path="protag/root/Skeleton3D/BoneAttachment3D/katana"]

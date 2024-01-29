@@ -1,0 +1,193 @@
+[gd_scene load_steps=31 format=3 uid="uid://dmjaipvq0v8kh"]
+
+[ext_resource type="PackedScene" uid="uid://b555i45mwyeig" path="res://entities/sam_duels/samurai/samurai.tscn" id="1_24br2"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_335xx"]
+[ext_resource type="Animation" uid="uid://c0cxmcwl4xdrr" path="res://mesh/player/anim/attack.res" id="2_i3ctq"]
+[ext_resource type="Script" path="res://entities/sam_duels/bot/BotController.gd" id="2_nvahv"]
+[ext_resource type="Animation" uid="uid://bm2fu7k6sqnqe" path="res://mesh/player/anim/attack_high.res" id="3_0oyl3"]
+[ext_resource type="Animation" uid="uid://cx1g5mu4fq0g8" path="res://mesh/player/anim/attack_low.res" id="4_6u8kh"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="4_rjknc"]
+[ext_resource type="Animation" uid="uid://fu2l6eonnwkq" path="res://mesh/player/anim/attack_mid.res" id="5_hhbiu"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="5_ionmq"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="6_26wmh"]
+[ext_resource type="Animation" uid="uid://dvmebaxdrsj3y" path="res://mesh/player/anim/block_recoil.res" id="6_oj114"]
+[ext_resource type="Script" path="res://scripts/util/target_area.gd" id="7_fyc3p"]
+[ext_resource type="Animation" uid="uid://cisa4nxfd8f07" path="res://mesh/player/anim/idle .res" id="7_vydva"]
+[ext_resource type="Animation" uid="uid://c083kdx8ht3ay" path="res://mesh/player/anim/idle_high .res" id="8_tc0ah"]
+[ext_resource type="Animation" uid="uid://bmn3817qgiy44" path="res://mesh/player/anim/idle_low .res" id="9_p0nfb"]
+[ext_resource type="Animation" uid="uid://dyb2wbohcdue0" path="res://mesh/player/anim/idle_mid - loop.res" id="10_mqict"]
+[ext_resource type="Animation" uid="uid://cu41uoruy0eff" path="res://mesh/player/anim/parried.res" id="11_bgshl"]
+[ext_resource type="Animation" uid="uid://u3clc6jtjci6" path="res://mesh/player/anim/reset.res" id="12_mdh61"]
+[ext_resource type="Animation" uid="uid://6qagihy6myy5" path="res://mesh/player/anim/run .res" id="13_rt0hc"]
+[ext_resource type="Animation" uid="uid://kjvtmjqusa7h" path="res://mesh/player/anim/run_backwards .res" id="14_kvou3"]
+[ext_resource type="Animation" uid="uid://bh8ld1ofvh7pn" path="res://mesh/player/anim/run_left .res" id="15_h1o1o"]
+[ext_resource type="Animation" uid="uid://ij5obftei1ml" path="res://mesh/player/anim/run_right .res" id="16_ykrkc"]
+[ext_resource type="Animation" uid="uid://dtm31g8hri8uf" path="res://mesh/player/anim/walk_forward_high .res" id="17_p5icf"]
+[ext_resource type="Animation" uid="uid://b4jnpgdftqykl" path="res://mesh/player/anim/walk_forward_low - loop.res" id="18_0n2go"]
+[ext_resource type="Animation" uid="uid://cmvqnfglnb5v3" path="res://mesh/player/anim/walk_forward_mid .res" id="19_0ateu"]
+[ext_resource type="Animation" uid="uid://d15mt0j383kbj" path="res://mesh/player/anim/walk_left_high .res" id="20_tqyui"]
+[ext_resource type="Animation" uid="uid://dhgomjf28p8fq" path="res://mesh/player/anim/walk_left_low .res" id="21_ku1fb"]
+[ext_resource type="Animation" uid="uid://da4dr6w4gss6s" path="res://mesh/player/anim/walk_left_mid .res" id="22_iil3p"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bb02a"]
+_data = {
+"attack": ExtResource("2_i3ctq"),
+"attack_high": ExtResource("3_0oyl3"),
+"attack_low": ExtResource("4_6u8kh"),
+"attack_mid": ExtResource("5_hhbiu"),
+"block_recoil": ExtResource("6_oj114"),
+"idle ": ExtResource("7_vydva"),
+"idle_high ": ExtResource("8_tc0ah"),
+"idle_low ": ExtResource("9_p0nfb"),
+"idle_mid - loop": ExtResource("10_mqict"),
+"parried": ExtResource("11_bgshl"),
+"reset": ExtResource("12_mdh61"),
+"run ": ExtResource("13_rt0hc"),
+"run_backwards ": ExtResource("14_kvou3"),
+"run_left ": ExtResource("15_h1o1o"),
+"run_right ": ExtResource("16_ykrkc"),
+"walk_forward_high ": ExtResource("17_p5icf"),
+"walk_forward_low - loop": ExtResource("18_0n2go"),
+"walk_forward_mid ": ExtResource("19_0ateu"),
+"walk_left_high ": ExtResource("20_tqyui"),
+"walk_left_low ": ExtResource("21_ku1fb"),
+"walk_left_mid ": ExtResource("22_iil3p")
+}
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_fuvtb"]
+radius = 30.0
+
+[node name="Bot" type="Node3D"]
+
+[node name="Samurai" parent="." instance=ExtResource("1_24br2")]
+collision_layer = 9
+
+[node name="Skeleton3D" parent="Samurai/protag/root" index="0"]
+bones/0/position = Vector3(-4.13613e-16, 0.748983, -0.00196802)
+bones/2/rotation = Quaternion(0.0736872, 0.00329244, -0.000243259, 0.997276)
+bones/3/rotation = Quaternion(0.0365691, -1.18895e-07, 4.34529e-09, 0.999331)
+bones/5/rotation = Quaternion(0.279268, -0.00649104, 0.00186896, 0.960189)
+bones/7/rotation = Quaternion(-0.75573, 0.110699, 0.284442, 0.579405)
+bones/8/rotation = Quaternion(8.91004e-08, -0.172153, -4.78273e-09, 0.98507)
+bones/9/rotation = Quaternion(-2.45866e-08, -5.9527e-08, 0.422333, 0.906441)
+bones/24/rotation = Quaternion(-0.533156, -0.00616277, -0.659265, 0.530166)
+bones/25/rotation = Quaternion(4.03321e-08, -0.0893146, -3.06796e-08, 0.996004)
+bones/26/rotation = Quaternion(2.26507e-08, -3.94648e-09, -0.0145465, 0.999894)
+bones/40/rotation = Quaternion(0.64466, 0.367268, 0.633004, 0.220983)
+bones/41/rotation = Quaternion(1.6689e-08, 0.0187496, 3.55301e-08, 0.999824)
+bones/42/rotation = Quaternion(-4.90481e-08, 2.24466e-08, 0.592317, 0.805705)
+bones/43/rotation = Quaternion(0.354194, 0.578725, -0.495043, 0.542732)
+bones/45/rotation = Quaternion(-1.29507e-07, 0.0791622, -2.87534e-07, 0.996862)
+bones/46/rotation = Quaternion(-0.86525, 0.24554, 0.435693, 0.0349952)
+bones/48/rotation = Quaternion(-1.3651e-07, 6.43565e-08, -0.575505, 0.817798)
+bones/49/rotation = Quaternion(0.42849, -0.513189, 0.629044, 0.396657)
+bones/51/rotation = Quaternion(9.67627e-09, -0.153022, -3.71348e-08, 0.988223)
+
+[node name="BoneAttachment3D" parent="Samurai/protag/root/Skeleton3D" index="1"]
+transform = Transform3D(0.149871, 0.322699, -0.934561, -0.986443, -0.0151041, -0.163407, -0.066847, 0.946381, 0.316061, -0.0772249, 0.905082, 0.3387)
+
+[node name="AnimationTree" parent="Samurai" index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_bb02a")
+}
+
+[node name="TargetArea" type="Area3D" parent="Samurai" node_paths=PackedStringArray("_owner")]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("7_fyc3p")
+_owner = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Samurai/TargetArea"]
+shape = SubResource("CylinderShape3D_fuvtb")
+
+[node name="BotController" type="Node" parent="." node_paths=PackedStringArray("_control_target", "_behavior_chart", "_target_area")]
+script = ExtResource("2_nvahv")
+_control_target = NodePath("../Samurai")
+_behavior_chart = NodePath("BehaviorChart")
+_target_area = NodePath("../Samurai/TargetArea")
+
+[node name="BehaviorChart" type="Node" parent="BotController"]
+script = ExtResource("2_335xx")
+
+[node name="Root" type="Node" parent="BotController/BehaviorChart"]
+script = ExtResource("4_rjknc")
+initial_state = NodePath("NoTarget")
+
+[node name="NoTarget" type="Node" parent="BotController/BehaviorChart/Root"]
+script = ExtResource("5_ionmq")
+
+[node name="OnAcquireTarget" type="Node" parent="BotController/BehaviorChart/Root/NoTarget"]
+script = ExtResource("6_26wmh")
+to = NodePath("../../CombatState")
+event = &"acquire_target"
+
+[node name="CombatState" type="Node" parent="BotController/BehaviorChart/Root"]
+script = ExtResource("4_rjknc")
+initial_state = NodePath("OutOfRange")
+
+[node name="OutOfRange" type="Node" parent="BotController/BehaviorChart/Root/CombatState"]
+script = ExtResource("5_ionmq")
+
+[node name="OnInRange" type="Node" parent="BotController/BehaviorChart/Root/CombatState/OutOfRange"]
+script = ExtResource("6_26wmh")
+to = NodePath("../../InRange")
+event = &"in_range"
+
+[node name="InRange" type="Node" parent="BotController/BehaviorChart/Root/CombatState"]
+script = ExtResource("5_ionmq")
+
+[node name="OnOutOfRange" type="Node" parent="BotController/BehaviorChart/Root/CombatState/InRange"]
+script = ExtResource("6_26wmh")
+to = NodePath("../../OutOfRange")
+event = &"out_of_range"
+
+[node name="OnAttack" type="Node" parent="BotController/BehaviorChart/Root/CombatState/InRange"]
+script = ExtResource("6_26wmh")
+to = NodePath("../../Attacking")
+event = &"attack"
+
+[node name="Attacking" type="Node" parent="BotController/BehaviorChart/Root/CombatState"]
+script = ExtResource("5_ionmq")
+
+[node name="OnAttackRecover" type="Node" parent="BotController/BehaviorChart/Root/CombatState/Attacking"]
+script = ExtResource("6_26wmh")
+to = NodePath("../../InRange")
+event = &"attack_end"
+
+[node name="Staggering" type="Node" parent="BotController/BehaviorChart/Root/CombatState"]
+script = ExtResource("5_ionmq")
+
+[node name="OnStaggerRecover" type="Node" parent="BotController/BehaviorChart/Root/CombatState/Staggering"]
+script = ExtResource("6_26wmh")
+to = NodePath("../../InRange")
+delay_seconds = 0.8
+
+[node name="HitReact" type="Node" parent="BotController/BehaviorChart/Root/CombatState"]
+script = ExtResource("5_ionmq")
+
+[node name="OnHitReactRecover" type="Node" parent="BotController/BehaviorChart/Root/CombatState/HitReact"]
+script = ExtResource("6_26wmh")
+to = NodePath("../../InRange")
+delay_seconds = 0.2
+
+[node name="Dying" type="Node" parent="BotController/BehaviorChart/Root/CombatState"]
+script = ExtResource("5_ionmq")
+
+[node name="OnDying" type="Node" parent="BotController/BehaviorChart/Root/CombatState"]
+script = ExtResource("6_26wmh")
+to = NodePath("../Dying")
+event = &"dying"
+
+[node name="OnStagger" type="Node" parent="BotController/BehaviorChart/Root"]
+script = ExtResource("6_26wmh")
+to = NodePath("../CombatState/Staggering")
+event = &"stagger"
+
+[connection signal="state_physics_processing" from="BotController/BehaviorChart/Root/NoTarget" to="BotController" method="_acquire_target_process"]
+[connection signal="state_physics_processing" from="BotController/BehaviorChart/Root/CombatState/OutOfRange" to="BotController" method="_out_of_range_process"]
+[connection signal="state_entered" from="BotController/BehaviorChart/Root/CombatState/InRange" to="BotController" method="_enter_in_range"]
+[connection signal="state_physics_processing" from="BotController/BehaviorChart/Root/CombatState/InRange" to="BotController" method="_in_range_process"]
+
+[editable path="Samurai"]
+[editable path="Samurai/protag"]
+[editable path="Samurai/protag/root/Skeleton3D/BoneAttachment3D/katana"]

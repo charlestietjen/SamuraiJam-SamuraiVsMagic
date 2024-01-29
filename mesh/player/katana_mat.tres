@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://gb00wseab82d"]
+
+[ext_resource type="Texture2D" uid="uid://dd1drr0hth0qw" path="res://mesh/player/katana_PolygonSamurai_Tex_01.png" id="1_6qb1u"]
+[ext_resource type="Texture2D" uid="uid://crj4myn3pdo4c" path="res://mesh/player/katana_PolygonSamurai_Emmision_Night.png" id="2_a7afy"]
+
+[resource]
+resource_name = "katana_mat"
+cull_mode = 2
+albedo_texture = ExtResource("1_6qb1u")
+roughness = 0.552786
+emission_enabled = true
+emission_texture = ExtResource("2_a7afy")

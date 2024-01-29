@@ -1,0 +1,99 @@
+[gd_scene load_steps=12 format=3 uid="uid://bumsg8dhe3a4f"]
+
+[ext_resource type="PackedScene" uid="uid://b555i45mwyeig" path="res://entities/sam_duels/samurai/samurai.tscn" id="1_fbmk4"]
+[ext_resource type="Script" path="res://scripts/util/target_area.gd" id="2_h5rqp"]
+[ext_resource type="PackedScene" uid="uid://bu2mwhwdmg0r1" path="res://entities/controllers/player_input.tscn" id="3_vfgn1"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="4_awc6u"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_vi3tg"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/camera_3D_resource.gd" id="6_c0hjt"]
+[ext_resource type="PackedScene" uid="uid://bgqg5xcybqyki" path="res://entities/CameraAndFilters.tscn" id="7_na7mn"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_51rbh"]
+radius = 10.0
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_ctg21"]
+
+[sub_resource type="Resource" id="Resource_uu3yc"]
+script = ExtResource("5_vi3tg")
+duration = 0.5
+transition = 0
+ease = 2
+
+[sub_resource type="Resource" id="Resource_lof65"]
+script = ExtResource("6_c0hjt")
+cull_mask = 1048575
+h_offset = 0.5
+v_offset = 0.0
+fov = 75.0
+
+[node name="Player" type="Node3D"]
+
+[node name="Samurai" parent="." node_paths=PackedStringArray("_pcam", "_mesh") instance=ExtResource("1_fbmk4")]
+collision_layer = 9
+_pcam = NodePath("../FollowPhantomCamera")
+_mesh = NodePath("protag/root/Skeleton3D/joined")
+
+[node name="Skeleton3D" parent="Samurai/protag/root" index="0"]
+bones/0/position = Vector3(-4.13613e-16, 0.705255, -0.00196802)
+bones/2/rotation = Quaternion(0.114917, 0.00327954, -0.000379377, 0.99337)
+bones/3/rotation = Quaternion(0.0527937, -1.18809e-07, 6.27562e-09, 0.998605)
+bones/5/rotation = Quaternion(0.212457, -0.00660569, 0.00142184, 0.977147)
+bones/7/rotation = Quaternion(-0.733348, 0.150556, 0.331162, 0.574339)
+bones/8/rotation = Quaternion(-3.05928e-08, -0.207481, 2.41315e-07, 0.978239)
+bones/9/rotation = Quaternion(-4.40533e-08, 1.10206e-07, 0.465187, 0.885212)
+bones/24/rotation = Quaternion(-0.501011, -0.0521111, -0.691144, 0.51826)
+bones/25/rotation = Quaternion(7.01794e-08, -0.033984, 5.568e-08, 0.999422)
+bones/26/rotation = Quaternion(4.86095e-08, 5.99075e-08, -0.0524918, 0.998621)
+bones/40/rotation = Quaternion(0.625715, 0.404048, 0.61966, 0.247482)
+bones/41/rotation = Quaternion(-2.6524e-09, 0.0150293, 2.78637e-08, 0.999887)
+bones/42/rotation = Quaternion(-4.68645e-08, -4.05686e-08, 0.657274, 0.753652)
+bones/43/rotation = Quaternion(0.368093, 0.568603, -0.516727, 0.523633)
+bones/45/rotation = Quaternion(-5.33676e-08, 0.0872474, -9.36409e-08, 0.996187)
+bones/46/rotation = Quaternion(-0.856753, 0.283304, 0.429785, 0.0315948)
+bones/48/rotation = Quaternion(-1.6478e-08, -8.40953e-09, -0.642166, 0.766565)
+bones/49/rotation = Quaternion(0.442547, -0.497862, 0.654252, 0.358105)
+bones/51/rotation = Quaternion(-9.53283e-08, -0.173935, 1.28397e-07, 0.984757)
+
+[node name="BoneAttachment3D" parent="Samurai/protag/root/Skeleton3D" index="1"]
+transform = Transform3D(0.65416, 0.448982, -0.608679, -0.650004, -0.077774, -0.755941, -0.386743, 0.89015, 0.240963, -0.079151, 0.93944, 0.338925)
+
+[node name="TargetArea" type="Area3D" parent="Samurai" node_paths=PackedStringArray("_owner")]
+collision_layer = 0
+collision_mask = 8
+monitorable = false
+script = ExtResource("2_h5rqp")
+_owner = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Samurai/TargetArea"]
+shape = SubResource("CylinderShape3D_51rbh")
+
+[node name="PLAYER_INPUT" parent="." node_paths=PackedStringArray("_control_target", "_target_area") instance=ExtResource("3_vfgn1")]
+_control_target = NodePath("../Samurai")
+_target_area = NodePath("../Samurai/TargetArea")
+
+[node name="FollowPhantomCamera" type="Node3D" parent="."]
+transform = Transform3D(-0.081313, 0.314265, -0.945846, 0, 0.948988, 0.315309, 0.996688, 0.0256388, -0.0771651, -2.83754, 2.34593, -0.231495)
+script = ExtResource("4_awc6u")
+priority_override = false
+priority = 2
+follow_mode = 6
+follow_target = NodePath("../Samurai")
+follow_parameters/spring_arm/spring_length = 3.0
+follow_parameters/spring_arm/collision_mask = 1
+follow_parameters/spring_arm/shape = SubResource("SeparationRayShape3D_ctg21")
+follow_parameters/spring_arm/margin = 0.01
+follow_parameters/target_offset = Vector3(0, 1.4, 0)
+follow_parameters/damping = true
+follow_parameters/damping_value = 10.0
+look_at_mode = 0
+tween_parameters = SubResource("Resource_uu3yc")
+tween_on_load = true
+inactive_update_mode = 0
+camera_3D_resource = SubResource("Resource_lof65")
+
+[node name="Camera3D" parent="." instance=ExtResource("7_na7mn")]
+transform = Transform3D(-0.081313, 0.314265, -0.945846, 0, 0.948988, 0.315309, 0.996688, 0.0256388, -0.0771651, -2.83754, 2.34593, -0.231495)
+
+[editable path="Samurai"]
+[editable path="Samurai/protag"]
+[editable path="Samurai/protag/root/Skeleton3D/BoneAttachment3D/katana"]

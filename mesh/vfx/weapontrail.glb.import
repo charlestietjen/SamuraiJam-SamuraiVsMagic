@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ut7yxyfx0kwy"
-path="res://.godot/imported/katana.glb-a490746a7a9caf64ecb66cbba183ef64.scn"
+uid="uid://cgdbcrdcxpahn"
+path="res://.godot/imported/weapontrail.glb-26824731567e717311207c6d20552124.scn"
 
 [deps]
 
-source_file="res://mesh/player/katana.glb"
-dest_files=["res://.godot/imported/katana.glb-a490746a7a9caf64ecb66cbba183ef64.scn"]
+source_file="res://mesh/vfx/weapontrail.glb"
+dest_files=["res://.godot/imported/weapontrail.glb-26824731567e717311207c6d20552124.scn"]
 
 [params]
 
@@ -30,10 +30,16 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
-"materials": {
-"katana_mat": {
-"use_external/enabled": true,
-"use_external/path": "res://mesh/player/katana_mat.tres"
+"meshes": {
+"weapontrail_BezierCurve": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"lods/normal_split_angle": 25.0,
+"save_to_file/enabled": true,
+"save_to_file/make_streamable": "",
+"save_to_file/path": "res://mesh/vfx/weapontrail_BezierCurve.res"
 }
 }
 }
